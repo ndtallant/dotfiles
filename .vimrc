@@ -5,6 +5,8 @@
 set shiftwidth=4
 set tabstop=4
 
+imap kj <Esc> 
+
 filetype plugin indent on
 syntax on
 
