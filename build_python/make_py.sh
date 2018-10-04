@@ -7,10 +7,10 @@ virtualenv ~/.pyenvs/py36
 virtualenv ~/.pyenvs/py_webdev
 virtualenv ~/.pyenvs/py_data
 
-source ~/.pyenvs/py_webdev
+source ~/.pyenvs/py_webdev/bin/activate
 pip install -r webdev.txt
-#deactivate
+deactivate
 
-source ~/.pyenvs/py_data
+source ~/.pyenvs/py_data/bin/activate
 pip install -r data_science.txt
-#deactivate
+deactivate
