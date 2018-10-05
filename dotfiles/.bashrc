@@ -1,3 +1,8 @@
+### FUNCTIONS ###
+
+# Passed arguments are refered to by their position (not by name), 
+# that is $1, $2, and so forth. $0 is the name of the script itself.
+
 ### ALIASES ###
 
 # Aliases are like macros. 
