@@ -14,3 +14,5 @@ deactivate
 source ~/.pyenvs/py_data/bin/activate
 pip install -r data_science.txt
 deactivate
+
+apt install ipython3
