@@ -1,9 +1,9 @@
-### FUNCTIONS ###
+##### FUNCTIONS #####
 
 # Passed arguments are refered to by their position (not by name), 
 # that is $1, $2, and so forth. $0 is the name of the script itself.
 
-### ALIASES ###
+##### ALIASES #####
 
 # Aliases are like macros. 
 # If you often find yourself executing a certain command 
@@ -18,12 +18,19 @@ alias py27='source ~/.pyenvs/py27/bin/activate'
 alias py_webdev='source ~/.pyenvs/py_webdev/bin/activate'
 alias py_data='source ~/.pyenvs/py_data/bin/activate'
 
-
-### ENVIRONMENT ###
-export JAVA_HOME=/usr/java/jre1.8.0_181/
+##### ENVIRONMENT #####
+export ANDROID_SDK_ROOT=~/Android
+export PATH=${PATH}:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export JRE_HOME=/usr/lib/jvm/java-8-oracle/jre
 export ANDROID_HOME=~/Android/Sdk/
 
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+
+##### THIRD PARTY #####
+
+# SDK Manager
+# https://sdkman.io/install
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/nick/.sdkman"
 [[ -s "/home/nick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/nick/.sdkman/bin/sdkman-init.sh"
