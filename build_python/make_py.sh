@@ -1,3 +1,4 @@
+apt-get install jupyter-core
 pip3 install virtualenv 
 
 # See aliases in .bashrc
