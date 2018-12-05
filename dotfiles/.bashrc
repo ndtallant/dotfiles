@@ -11,12 +11,15 @@
 # an alias for this.
 
 alias l=ls
+alias jpn='jupyter notebook'
 alias python=python3
 alias ipython=ipython3
 alias py36='source ~/.pyenvs/py36/bin/activate'
 alias py27='source ~/.pyenvs/py27/bin/activate'
 alias py_webdev='source ~/.pyenvs/py_webdev/bin/activate'
 alias py_data='source ~/.pyenvs/py_data/bin/activate'
+alias nuke_containers='docker rm -f $(docker ps -aq)'
+alias nuke_images='docker rmi -f $(docker images -q)'
 
 ##### ENVIRONMENT #####
 export ANDROID_SDK_ROOT=~/Android
