@@ -5,12 +5,15 @@
 set shiftwidth=4
 set tabstop=4
 
+"no more flash!
+set vb t_vb=
+
 imap kj <Esc> 
+nnoremap <silent> <Tab> >>
+nnoremap <silent> <S-Tab> <<
 
 filetype plugin indent on
 syntax on
-
-"colorscheme elflord
 
 let mapleader=","
 
