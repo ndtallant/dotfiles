@@ -3,6 +3,12 @@
 # Passed arguments are refered to by their position (not by name), 
 # that is $1, $2, and so forth. $0 is the name of the script itself.
 
+snake() {
+    echo $1 |
+      tr [:upper:] [:lower:] |
+      tr ' ' '_'
+}
+
 ##### ALIASES #####
 
 # Aliases are like macros. 
@@ -18,8 +24,6 @@ alias py36='source ~/.pyenvs/py36/bin/activate'
 alias py27='source ~/.pyenvs/py27/bin/activate'
 alias py_webdev='source ~/.pyenvs/py_webdev/bin/activate'
 alias py_data='source ~/.pyenvs/py_data/bin/activate'
-alias nuke_containers='docker rm -f $(docker ps -aq)'
-alias nuke_images='docker rmi -f $(docker images -q)'
 
 ##### ENVIRONMENT #####
 export ANDROID_SDK_ROOT=~/Android
