@@ -17,6 +17,7 @@ snake() {
 # an alias for this.
 
 alias l=ls
+alias ll='ls -l'
 alias jpn='jupyter notebook'
 alias python=python3
 alias ipython=ipython3
