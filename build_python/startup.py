@@ -1,7 +1,10 @@
 '''
 startup.py
+----------
 
 This file loads up all the best stuff when using the iPython repl.
+
+It lives here: ~/.ipython/profile_default/startup/startup.py
 
 Specifically - this will look at the virtual environment setup and
 load the popular modules for it.
@@ -15,7 +18,10 @@ Options are:
 import os
 
 mission = 'python'
-env = os.environ['VIRTUAL_ENV'].split('py_')[-1]
+try:
+    env = os.environ['VIRTUAL_ENV'].split('py_')[-1]
+except:
+    env = None
 
 if env == 'data':
     import numpy as np
