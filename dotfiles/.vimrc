@@ -51,6 +51,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap <C-p> A %>%<Esc>j
+
 " Enable folding with spacebar
 set foldmethod=indent
 set foldlevel=99
