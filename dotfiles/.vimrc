@@ -26,8 +26,9 @@ set encoding=utf-8
 
 
 "defaults for indentation
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |   
@@ -38,11 +39,6 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix | 
 
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
-
 "split navigations
 set splitbelow
 set splitright
@@ -51,6 +47,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"Piping in R
 nnoremap <C-p> A %>%<Esc>j
 
 " Enable folding with spacebar
@@ -71,8 +68,6 @@ syntax on
 
 let mapleader=","
 
-
-
 " assorted options
 set smartindent
 set autowrite
@@ -88,4 +83,3 @@ set showmatch
 set vb
 " autosave when focus is lost
 :au FocusLost * :wa
-
