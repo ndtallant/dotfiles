@@ -11,6 +11,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'benmills/vimux'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -48,7 +49,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 "Piping in R
-nnoremap <C-p> A %>%<Esc>j
+nnoremap <C-p> A %>%<Esc>
+vnoremap <C-p> :norm A %>%<Esc>
+inoremap <C-p> %>%<Esc>o
 
 " Enable folding with spacebar
 set foldmethod=indent
