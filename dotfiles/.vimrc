@@ -24,7 +24,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 set clipboard=unnamed
 set encoding=utf-8
+let mapleader="\\"
 
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>` viw<esc>a`<esc>bi`<esc>lel
+iabbrev adn and
 
 "defaults for indentation
 set shiftwidth=2
@@ -69,7 +76,6 @@ filetype plugin indent on
 let python_highlight_all=1
 syntax on
 
-let mapleader=","
 
 " assorted options
 set smartindent
