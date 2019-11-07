@@ -31,6 +31,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 nnoremap <leader>` viw<esc>a`<esc>bi`<esc>lel
+nnoremap <leader>l <C-v>}A,<C-c>gvJ$x
+nnoremap <leader>] 0i[<C-c>A]<C-c>
+nnoremap <leader>) 0i(<C-c>A)<C-c>
 iabbrev adn and
 
 "defaults for indentation
