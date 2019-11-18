@@ -1,4 +1,4 @@
 "Piping 
-nnoremap <buffer> <C-p> A %>%<Esc>
-vnoremap <buffer> <C-p> :norm A %>%<Esc>
-inoremap <buffer> <C-p> %>%<Esc>o
+nnoremap <buffer> <C-m> A %>%<Esc>
+vnoremap <buffer> <C-m> :norm A %>%<Esc>
+inoremap <buffer> <C-m> %>%<Esc>o
