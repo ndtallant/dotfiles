@@ -34,6 +34,7 @@ nnoremap <leader>` viw<esc>a`<esc>bi`<esc>lel
 nnoremap <leader>l <C-v>}A,<C-c>gvJ$x
 nnoremap <leader>] 0i[<C-c>A]<C-c>
 nnoremap <leader>) 0i(<C-c>A)<C-c>
+nnoremap <leader>- yyp:s!\S!-!g<esc>
 iabbrev adn and
 
 "defaults for indentation
