@@ -22,3 +22,6 @@ function! VimuxSelection()
 endfunction
 
 vnoremap <silent><leader>r "vy :call VimuxSelection()<CR>
+
+" Knit an Rmd file.
+nnoremap <silent><leader>k :call VimuxRunCommand("rmarkdown::render('" . expand("%") . "')")<CR>
