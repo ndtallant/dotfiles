@@ -12,6 +12,12 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'benmills/vimux'
+Plugin 'ap/vim-css-color'
+
+" Typescript and React Native
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -35,6 +41,7 @@ nnoremap <leader>l <C-v>}A,<C-c>gvJ$x
 nnoremap <leader>] 0i[<C-c>A]<C-c>
 nnoremap <leader>) 0i(<C-c>A)<C-c>
 nnoremap <leader>- yyp:s!\S!-!g<esc>
+nnoremap <leader>3 50i#<Esc>
 iabbrev adn and
 
 "defaults for indentation
@@ -90,3 +97,20 @@ set showmatch
 set vb
 " autosave when focus is lost
 :au FocusLost * :wa
+
+
+" Run a line.
+function! VimuxCurrentLine()
+  let l:command = getline(".")
+  call VimuxRunCommand(l:command)
+endfunction
+
+nnoremap <silent><leader>r :call VimuxCurrentLine()<CR>
+
+" Run a selected chunk.
+function! VimuxSelection()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+vnoremap <silent><leader>r "vy :call VimuxSelection()<CR>
