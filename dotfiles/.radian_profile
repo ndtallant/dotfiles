@@ -1,0 +1,3 @@
+# auto match brackets and quotes
+options(radian.auto_match = FALSE,
+        radian.color_scheme = "monokai")
