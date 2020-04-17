@@ -1,5 +1,7 @@
 set nocompatible              " required
 filetype off                  " required
+set shell=/bin/bash
+colorscheme industry
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -41,7 +43,7 @@ nnoremap <leader>l <C-v>}A,<C-c>gvJ$x
 nnoremap <leader>] 0i[<C-c>A]<C-c>
 nnoremap <leader>) 0i(<C-c>A)<C-c>
 nnoremap <leader>- yyp:s!\S!-!g<esc>
-nnoremap <leader>3 50i#<Esc>
+nnoremap <leader>3 79i#<Esc>
 iabbrev adn and
 
 "defaults for indentation
