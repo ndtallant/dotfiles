@@ -9,6 +9,16 @@ snake() {
       tr ' ' '_'
 }
 
+
+# Thanks for the idea https://meyerweb.com/
+please() {
+	if [ "$1" ]; then
+		sudo $@
+	else
+		sudo "$BASH" -c "$(history -p !!)"
+	fi
+}
+
 ##### ALIASES #####
 
 # Aliases are like macros. 
