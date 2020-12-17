@@ -31,10 +31,10 @@ alias ll='ls -l'
 alias jpn='jupyter notebook'
 alias python=python3
 alias ipython=ipython3
-alias py36='source ~/.pyenvs/py36/bin/activate'
-alias py27='source ~/.pyenvs/py27/bin/activate'
-alias py_webdev='source ~/.pyenvs/py_webdev/bin/activate'
-alias py_data='source ~/.pyenvs/py_data/bin/activate'
+alias py38='source ~/.venvs/py38/bin/activate'
+alias py27='source ~/.venvs/py27/bin/activate'
+alias brew='arch -x86_64 brew'
+
 
 ##### ENVIRONMENT #####
 export ANDROID_SDK_ROOT=~/Android
