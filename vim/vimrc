@@ -1,66 +1,20 @@
-set nocompatible              " required
-filetype off                  " required
-set shell=/bin/bash
+" Absolute essentials
+inoremap kj <Esc> 
 colorscheme industry
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'benmills/vimux'
-Plugin 'ap/vim-css-color'
-
-" Typescript and React Native
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
-
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-" File tree
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-set clipboard=unnamed
-set encoding=utf-8
 let mapleader="\\"
+set encoding=utf-8
+set clipboard=unnamed
+set ruler
+set number
+set fileformat=unix
 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-nnoremap <leader>` viw<esc>a`<esc>bi`<esc>lel
-nnoremap <leader>l <C-v>}A,<C-c>gvJ$x
-nnoremap <leader>] 0i[<C-c>A]<C-c>
-nnoremap <leader>) 0i(<C-c>A)<C-c>
-nnoremap <leader>- yyp:s!\S!-!g<esc>
-nnoremap <leader>3 79i#<Esc>
-iabbrev adn and
+filetype plugin indent on
+syntax on
 
-"defaults for indentation
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+nnoremap <silent> <Tab> >>
+nnoremap <silent> <S-Tab> <<
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |   
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix | 
-
-"split navigations
+" Split navigations
 set splitbelow
 set splitright
 nnoremap <C-J> <C-W><C-J>
@@ -73,46 +27,59 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
+" Edit and source .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Quote words
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>` viw<esc>a`<esc>bi`<esc>lel
+
+" Wrap in brackets
+nnoremap <leader>] 0i[<C-c>A]<C-c>
+nnoremap <leader>) 0i(<C-c>A)<C-c>
+nnoremap <leader>} 0i{<C-c>A}<C-c>
+
+" Underline current line
+nnoremap <leader>- yypv$r-<esc>
+
+" Will make a better version of these...
+:autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+:autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+
+filetype plugin indent on    " required
+
+iabbrev adn and
+iabbrev dfe def
+
+"defaults for indentation
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+
 "no more flash!
 set vb t_vb=
 
-inoremap kj <Esc> 
-nnoremap <silent> <Tab> >>
-nnoremap <silent> <S-Tab> <<
-
-filetype plugin indent on
-syntax on
-
-
-" assorted options
 set smartindent
 set autowrite
 set bg=dark
 set expandtab
-set ignorecase
-set mouse=nv
-set number
+set mouse=a
 set nocompatible
 set ofu=syntaxcomplete#Complete
-set ruler
 set showmatch
-set vb
+
 " autosave when focus is lost
 :au FocusLost * :wa
 
 
-" Run a line.
-function! VimuxCurrentLine()
-  let l:command = getline(".")
-  call VimuxRunCommand(l:command)
-endfunction
+" Vundle setup - add plugins here.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-nnoremap <silent><leader>r :call VimuxCurrentLine()<CR>
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'benmills/vimux'
 
-" Run a selected chunk.
-function! VimuxSelection()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
-
-vnoremap <silent><leader>r "vy :call VimuxSelection()<CR>
+call vundle#end()
