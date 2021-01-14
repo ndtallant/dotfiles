@@ -4,9 +4,7 @@
 # that is $1, $2, and so forth. $0 is the name of the script itself.
 
 snake() {
-    echo $1 |
-      tr [:upper:] [:lower:] |
-      tr ' ' '_'
+    echo $1 | tr [:upper:] [:lower:] | tr ' ' '_'
 }
 
 
@@ -34,21 +32,4 @@ alias ipython=ipython3
 alias py38='source ~/.venvs/py38/bin/activate'
 alias py27='source ~/.venvs/py27/bin/activate'
 alias brew='arch -x86_64 brew'
-
-
-##### ENVIRONMENT #####
-export ANDROID_SDK_ROOT=~/Android
-export PATH=${PATH}:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-export JRE_HOME=/usr/lib/jvm/java-8-oracle/jre
-export ANDROID_HOME=~/Android/Sdk/
-
-
-
-##### THIRD PARTY #####
-
-# SDK Manager
-# https://sdkman.io/install
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/nick/.sdkman"
-[[ -s "/home/nick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/nick/.sdkman/bin/sdkman-init.sh"
+alias gs='git status'
