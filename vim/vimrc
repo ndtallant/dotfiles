@@ -44,6 +44,9 @@ nnoremap <leader>} 0i{<C-c>A}<C-c>
 " Underline current line
 nnoremap <leader>- yypv$r-<esc>
 
+" Flip content around an =
+nnoremap <leader>= :s/\([^=]*\)\s\+=\s\+\([^;]*\)/\2 = \1
+
 " Will make a better version of these...
 :autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 :autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
