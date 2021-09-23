@@ -14,6 +14,17 @@ syntax on
 nnoremap <silent> <Tab> >>
 nnoremap <silent> <S-Tab> <<
 
+" Replace single quote with double quote
+nnoremap '' :s/'/"/g <C-M>
+vnoremap '' :s/'/"/g <C-M>
+
+" Paste over a visual selection by using the null buffer
+vnoremap <leader>p "_dP
+
+" Delete without cutting to the default buffer
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
 " Split navigations
 set splitbelow
 set splitright
@@ -56,6 +67,9 @@ filetype plugin indent on    " required
 iabbrev adn and
 iabbrev dfe def
 
+" Hit tab after typing an HTML tag to close it.
+inoremap ><Tab> ><Esc>?<[a-z]<CR>lyiwo</<C-r>"><Esc>O
+
 "defaults for indentation
 set shiftwidth=2
 set tabstop=2
@@ -66,7 +80,6 @@ set vb t_vb=
 
 set smartindent
 set autowrite
-set bg=dark
 set expandtab
 set mouse=a
 set nocompatible
@@ -86,3 +99,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'benmills/vimux'
 
 call vundle#end()
+
+" Make vim background transparent
+" Must be called after colorscheme
+hi Normal guibg=NONE ctermbg=NONE
