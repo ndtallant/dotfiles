@@ -17,6 +17,10 @@ please() {
 	fi
 }
 
+rando() {
+  xxd -l 12 -c 32 -p < /dev/random
+}
+
 ##### ALIASES #####
 
 # Aliases are like macros. 
@@ -27,11 +31,11 @@ please() {
 alias l=ls
 alias ll='ls -l'
 alias jpn='jupyter notebook'
-alias python=python3
-alias ipython=ipython3
-alias py38='source ~/.venvs/py38/bin/activate'
-alias py27='source ~/.venvs/py27/bin/activate'
-alias brew='arch -x86_64 brew'
 alias gs='git status'
 alias gitnvm='git reset --soft HEAD~1'
 alias gitfix='git add -A && git commit --amend --no-edit'
+alias mkvenv='python3 -m venv venv'
+alias sv='source venv/bin/activate'
+alias dv='deactivate'
+alias :x='exit' # Vim is life
+
