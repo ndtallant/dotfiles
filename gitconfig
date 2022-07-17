@@ -1,0 +1,17 @@
+[user]
+  name = Nick Tallant
+  email = EMAIL
+
+[alias]
+  gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
+  branch = branch --sort=-committerdate
+  who = var GIT_COMMITTER_IDENT
+  # Feature History
+  fh = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short origin..HEAD
+  locals = "!git branch --format '%(refname:short) %(upstream:short)' | awk '{if (!$2) print $1;}'"
+
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
