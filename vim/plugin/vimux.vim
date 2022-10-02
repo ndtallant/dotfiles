@@ -6,7 +6,7 @@ function! VimuxCurrentLine()
   call VimuxRunCommand(l:command)
 endfunction
 
-nnoremap <silent><leader>r :call VimuxCurrentLine()<CR>
+nnoremap <silent><leader>tr :call VimuxCurrentLine()<CR>
 
 " Run a selected chunk.
 function! VimuxSelection()
@@ -14,4 +14,4 @@ function! VimuxSelection()
   call VimuxSendKeys("Enter")
 endfunction
 
-vnoremap <silent><leader>r "vy :call VimuxSelection()<CR>
+vnoremap <silent><leader>tr "vy :call VimuxSelection()<CR>
