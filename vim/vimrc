@@ -1,12 +1,15 @@
 " Absolute essentials
 inoremap kj <Esc> 
 colorscheme industry
-let mapleader="\\"
+let mapleader=" "
 set encoding=utf-8
 set clipboard=unnamed
 set ruler
 set number
 set fileformat=unix
+set scrolloff=7
+set noswapfile
+
 
 filetype plugin indent on
 syntax on
@@ -36,11 +39,12 @@ nnoremap <C-H> <C-W><C-H>
 " Enable folding with spacebar
 set foldmethod=indent
 set foldlevel=99
-nnoremap <space> za
+"nnoremap <space> za
 
 " Edit and source .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>o :vsplit ~/Documents/Omelas/project<cr>
 
 " Quote words
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
@@ -58,9 +62,14 @@ nnoremap <leader>- yypv$r-<esc>
 " Flip content around an =
 nnoremap <leader>= :s/\([^=]*\)\s\+=\s\+\([^;]*\)/\2 = \1
 
+nnoremap <leader>rw <cmd>Ex<CR>
+
 " Will make a better version of these...
 :autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 :autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+
+" Spellcheck markdown files
+:autocmd FileType markdown set spell
 
 filetype plugin indent on    " required
 
@@ -71,9 +80,9 @@ iabbrev dfe def
 inoremap ><Tab> ><Esc>?<[a-z]<CR>lyiwo</<C-r>"><Esc>O
 
 "defaults for indentation
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 
 "no more flash!
 set vb t_vb=
@@ -88,18 +97,3 @@ set showmatch
 
 " autosave when focus is lost
 :au FocusLost * :wa
-
-
-" Vundle setup - add plugins here.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'benmills/vimux'
-
-call vundle#end()
-
-" Make vim background transparent
-" Must be called after colorscheme
-hi Normal guibg=NONE ctermbg=NONE
