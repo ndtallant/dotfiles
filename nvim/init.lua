@@ -1,46 +1,35 @@
 vim.cmd("source ~/.vimrc")
 
+function map(mode, shortcut, command)
+	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+end
+
+function nmap(shortcut, command)
+	map("n", shortcut, command)
+end
+
+function vmap(shortcut, command)
+	map("v", shortcut, command)
+end
+
+function imap(shortcut, command)
+	map("i", shortcut, command)
+end
+
 -- Load lazy.nvim plugin manager, typically in .local/share/nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable",
-        lazypath,
-    })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-          vim.cmd([[colorscheme tokyonight]])
-        end
-    },
-    {
-        "nvim-lualine/lualine.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {
-            options = {
-            icons_enabled = false,
-            section_separators = "",
-            component_separators = "",
-            theme = "tokyonight"
-        },
-        tabline = {
-            lualine_a = {
-                { "buffers", symbols = { modified = "[+]", alternate_file = "" } }
-            }
-        }}
-    },
-    { "github/copilot.vim" },
-    { "tpope/vim-commentary" },
-})
-
+-- This will load all files in lua/plugins
+-- so long as they return a table.
+require("lazy").setup("plugins")
