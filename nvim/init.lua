@@ -30,6 +30,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- This will load all files in lua/plugins
+-- This will load all files in lua/plugins/
 -- so long as they return a table.
 require("lazy").setup "plugins"
+
+-- Custom commands go in lua/commands.lua
+require "commands"
