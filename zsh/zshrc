@@ -12,3 +12,24 @@ timezsh() {
 }
 
 source ~/.zsh_prompt
+
+# Overrides the existing function from fpath
+# and autocompletes python -m [module]
+# Assumes that "python" is defined!
+_python_modules() {
+
+  local modules
+
+  # Technically this gets packages and not modules, BUT it generates
+  # all of the packages in the current path. Which is usually what I want
+  # to autocomplete.
+  modules=(${(f)"$(python3 -c 'import pkgutil; print("\n".join(m.name for m in pkgutil.walk_packages(["."])))')"})
+
+  # Use compadd to add the completions without a trailing space
+  # -Q: Quotes the results to handle any special characters properly.
+  # -S '': Ensures no trailing space is added after the completions.
+  # --: Signals the end of options for compadd, 
+  #     ensuring that all following arguments are treated 
+  #     as completion suggestions.
+  compadd -Q -S '' -- $modules
+}
