@@ -1,18 +1,160 @@
-" Absolute essentials
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Table of Contents
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Sections:
+"    -> General
+"    -> Vim User Interface
+"    -> Colors and Fonts
+"    -> Files and Backups
+"    -> Text, Tab, and Indent Related
+"    -> Clipboard Integration
+"    -> Moving Around, Tabs, and Buffers
+"    -> Editing Mappings
+"    -> Spell Checking
+"    -> Helper Functions
+"    -> Miscellaneous
+"    -> Vim Plugin Settings
+"    -> Neovim Plugin Settings
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 inoremap kj <Esc> 
-colorscheme industry
+tnoremap kj <C-\><C-n>
 let mapleader=" "
-set encoding=utf-8
 set clipboard=unnamed
-set ruler
 set number
+"set relativenumber
 set fileformat=unix
-set scrolloff=7
+
+" Edit and source .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>o :vsplit ~/Documents/Omelas/project<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Fast quitting and saving
+nmap <leader>x :x<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim User Interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Turn on the Wild menu
+set wildmenu
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+" Always show current position
+set ruler
+
+" A buffer becomes hidden when it is abandoned
+set hidden
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Ignore case when searching
+set ignorecase
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlight search results
+set hlsearch
+" Press enter to leave search and remove highlight
+nnoremap <silent> <CR> :noh<CR><CR>
+
+" Make search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Turn magic on for regular expressions 
+set magic
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" Show the line number
+set number
+
+" Don't show sign/diagnostic column
+set signcolumn=no
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Enable syntax highlighting
+syntax enable
+
+" Set background color
+set background=dark
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, Backups and Undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Turn backup off, since most stuff is in SVN, git, etc anyway
+set nobackup
+set nowb
 set noswapfile
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text, Tab, and Indent Related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-filetype plugin indent on
-syntax on
+" Enable smart auto indent and line wrapping
+set ai
+set si
+set wrap
+
+" Keep text selected on indent
+vnoremap < <gv
+vnoremap > >gv
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clipboard Integration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 nnoremap <silent> <Tab> >>
 nnoremap <silent> <S-Tab> <<
@@ -36,15 +178,11 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+
 " Enable folding with spacebar
+set foldcolumn=1
 set foldmethod=indent
 set foldlevel=99
-"nnoremap <space> za
-
-" Edit and source .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>o :vsplit ~/Documents/Omelas/project<cr>
 
 " Quote words
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
@@ -71,21 +209,13 @@ nnoremap <leader>rw <cmd>Ex<CR>
 " Spellcheck markdown files
 :autocmd FileType markdown set spell
 
-filetype plugin indent on    " required
-
 iabbrev adn and
 iabbrev dfe def
-
-" Hit tab after typing an HTML tag to close it.
-inoremap ><Tab> ><Esc>?<[a-z]<CR>lyiwo</<C-r>"><Esc>O
 
 "defaults for indentation
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
-
-"no more flash!
-set vb t_vb=
 
 set smartindent
 set autowrite
@@ -95,5 +225,7 @@ set nocompatible
 set ofu=syntaxcomplete#Complete
 set showmatch
 
-" autosave when focus is lost
-:au FocusLost * :wa
+" Neovim-specific stuff. Not used on systems with only vim
+if has('nvim-0.8.0') && ($NVIM_EDITOR_CONFIG == "ADVANCED")
+    set showmatch
+endif
