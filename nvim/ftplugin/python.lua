@@ -1,1 +1,1 @@
-nmap("<C-b>", "Obreakpoint()<Esc>")
+nmap("<leader>b", "Obreakpoint()<Esc>")
