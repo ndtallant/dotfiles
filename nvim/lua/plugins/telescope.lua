@@ -5,5 +5,6 @@ return {
   config = function()
     nmap("<leader>ff", "<cmd>Telescope git_files<cr>")
     nmap("<leader>lg", "<cmd>Telescope live_grep<cr>")
+    nmap("<leader>lb", "<cmd>Telescope buffers<cr>")
   end,
 }
