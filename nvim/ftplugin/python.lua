@@ -1,1 +1,2 @@
-nmap("<leader>b", "Obreakpoint()<Esc>")
+-- option-b
+nmap("∫", "Obreakpoint()<Esc>")
