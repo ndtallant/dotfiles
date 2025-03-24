@@ -1,12 +1,13 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "saghen/blink.cmp" },
     ft = { "go", "python" },
     config = function()
       local lspconfig = require "lspconfig"
-      lspconfig.gopls.setup {}
-      lspconfig.pyright.setup {}
-
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      lspconfig.gopls.setup { capabilities = capabilities }
+      lspconfig.pyright.setup { capabilities = capabilities }
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("UserLspConfig", {}),
         callback = function(ev)
