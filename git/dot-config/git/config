@@ -1,6 +1,8 @@
-[user]
-  name = Nick Tallant
-  email = EMAIL
+# vim: set ft=gitconfig :
+# -*- mode: gitconfig -*-
+
+[include]
+  path = ~/.config/git/private.gitconfig
 
 [alias]
   gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
