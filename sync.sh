@@ -3,7 +3,7 @@
 set -eu
 
 # Come back and do vim!
-PACKAGES="shell git tmux wezterm"
+PACKAGES="shell git tmux wezterm vim"
 
 
 if ! command -v stow >/dev/null 2>&1; then
