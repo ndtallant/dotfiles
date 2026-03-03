@@ -16,6 +16,9 @@ function imap(shortcut, command)
   map("i", shortcut, command)
 end
 
+require "config.commands"
+require "config.lsp"
+
 -- Load lazy.nvim plugin manager, typically in .local/share/nvim
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -33,6 +36,3 @@ vim.opt.rtp:prepend(lazypath)
 -- This will load all files in lua/plugins/
 -- so long as they return a table.
 require("lazy").setup "plugins"
-
--- Custom commands go in lua/commands.lua
-require "commands"

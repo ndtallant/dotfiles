@@ -1,4 +1,5 @@
 # This goes in ~/.config/git/ignore
 **/.DS_Store
-**/*.swp
 **/__pycache__
+**/*.swp
+**/.nvimlog
