@@ -2,8 +2,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   callback = function(ev)
     local opts = { buffer = ev.buf }
-
-    -- Keep only mappings that are not part of Neovim's default LSP keymaps.
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
   end,
