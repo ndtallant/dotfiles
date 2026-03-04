@@ -28,6 +28,7 @@ rando() {
 # with the same parameters (or a part of it), you can define 
 # an alias for this.
 
+alias vim='nvim'
 alias l=ls
 alias ll='ls -l'
 alias jpn='jupyter notebook'
@@ -35,7 +36,7 @@ alias gs='git status'
 alias gitnvm='git reset --soft HEAD~1'
 alias gitfix='git add -A && git commit --amend --no-edit'
 alias mkvenv='python3 -m venv venv'
-alias sv='source venv/bin/activate'
+alias sv='source .venv/bin/activate'
 alias dv='deactivate'
 alias :x='exit' # Vim is life
 
