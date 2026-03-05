@@ -1,3 +1,8 @@
+#!/bin/sh
+
+alias sv='source .venv/bin/activate'
+alias dv='deactivate'
+
 #####################################################################
 # Python ZSH Configuration
 # -------------------------------------------------------------------
@@ -21,3 +26,33 @@ export PYTHONBREAKPOINT="tallant.debug.set_trace"
 export UV_PYTHON_DOWNLOADS="automatic" 
 export UV_PYTHON_PREFERENCE="only-managed"
 
+
+#####################################################################
+# pyden shows where all the pythons live!
+#
+#   - brew pythons should only be used for other brew packages
+#   - uv should only use it's own managed pythons
+#   - pyenv is used to prevent us from blowing up the system python
+#
+# -------------------------------------------------------------------
+function pyden {
+  echo "brew packages use the following python versions"
+  echo "-----------------------------------------------"
+  # brew list --versions python <-- very slow
+  ls $(brew --cellar) | grep python
+  
+  echo
+  echo "uv has installed and manages the following versions"
+  echo "---------------------------------------------------"
+  uv python list --only-installed
+  
+  echo
+  echo "pyenv has installed and manages the following versions"
+  echo "------------------------------------------------------"
+  pyenv versions --bare
+  
+  echo
+  echo "this environment uses" 
+  echo "---------------------" 
+  echo "$(python --version) --> $(which python)"
+}
