@@ -1,0 +1,7 @@
+#!/bin/sh
+# Shows feature history of current branch 
+
+git log \
+  --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' \
+  --date=short \
+  origin..HEAD

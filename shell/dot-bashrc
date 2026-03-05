@@ -32,8 +32,5 @@ alias vim='nvim'
 alias l=ls
 alias ll='ls -l'
 alias jpn='jupyter notebook'
-alias gs='git status'
-alias gitnvm='git reset --soft HEAD~1'
-alias gitfix='git add -A && git commit --amend --no-edit'
 alias :x='exit' # Vim is life
 
