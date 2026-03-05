@@ -56,3 +56,27 @@ function pyden {
   echo "---------------------" 
   echo "$(python --version) --> $(which python)"
 }
+
+
+#####################################################################
+# Tab completion of modules when running `python -m [module]`
+# It overrides the default _python_modules zsh completion func.
+# This only works if autoload -Uz compinit; compinit is called later.
+# -------------------------------------------------------------------
+_python_modules() {
+
+  local modules
+
+  # Technically this gets packages and not modules, BUT it generates
+  # all of the packages in the current path. Which is usually what I want
+  # to autocomplete.
+  modules=(${(f)"$(python3 -c 'import pkgutil; print("\n".join(m.name for m in pkgutil.walk_packages(["."])))')"})
+
+  # Use compadd to add the completions without a trailing space
+  # -Q: Quotes the results to handle any special characters properly.
+  # -S '': Ensures no trailing space is added after the completions.
+  # --: Signals the end of options for compadd, 
+  #     ensuring that all following arguments are treated 
+  #     as completion suggestions.
+  compadd -Q -S '' -- $modules
+}
