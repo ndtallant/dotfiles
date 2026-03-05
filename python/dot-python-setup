@@ -16,7 +16,7 @@ eval "$(pyenv init - zsh)"
 # https://docs.python.org/3/using/cmdline.html#environment-variables
 # -------------------------------------------------------------------
 export PYTHONPATH="$HOME/.pybin/"
-export PYTHONBREAKPOINT="tallant.debug.set_trace"
+export PYTHONBREAKPOINT="tdb.set_trace"
 
 
 #####################################################################

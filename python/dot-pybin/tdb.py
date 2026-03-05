@@ -1,3 +1,14 @@
+"""
+Tallant debugger, lol
+
+Use by :
+  - setting PYTHONPATH="~/.pybin"
+  - setting PYTHONBREAKPOINT='tbd.set_trace'
+
+This activates this debugger for breakpoint() calls,
+and can also be used like pdb, python -m tdb script.py
+"""
+import inspect
 import linecache
 import pdb
 import reprlib
@@ -21,7 +32,6 @@ DEFAULT_HEADER = (
 
 
 class Tdb(pdb.Pdb):
-    """Tallant debugger, lol"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -70,15 +80,33 @@ class Tdb(pdb.Pdb):
         )
 
 
-def set_trace(*, header=None, commands=None):
+def set_trace(*, header="", commands=None):
     # TODO: Figure out shared class var without reimplementing lots of stuff
     # This is what Pdb does...
     # if Tdb._last_pdb_instance is not None:
     #     tdb = Tdb._last_pdb_instance
     # else:
-    tdb = Tdb(mode="inline", backend="monitoring", colorize=True)
+
+    pdb_init_params = inspect.signature(pdb.Pdb.__init__).parameters
+    tbd_kwargs = {}
+    if "mode" in pdb_init_params:
+        tbd_kwargs["mode"] = "inline"
+    if "backend" in pdb_init_params:
+        # Python 3.14+ can use the lower-overhead monitoring backend.
+        tbd_kwargs["backend"] = "monitoring"
+    if "colorize" in pdb_init_params:
+        tbd_kwargs["colorize"] = True
+
+    set_trace_params = inspect.signature(pdb.Pdb.set_trace).parameters
+    set_trace_kwargs = {}
+    if "frame" in set_trace_params:
+        set_trace_kwargs["frame"] = sys._getframe().f_back
+    if "commands" in set_trace_params and commands is not None:
+        set_trace_kwargs["commands"] = commands
+
+    tdb = Tdb(**tbd_kwargs)
     tdb.message(header or DEFAULT_HEADER)
-    tdb.set_trace(sys._getframe().f_back, commands=commands)
+    tdb.set_trace(**set_trace_kwargs)
 
 
 if __name__ == "__main__":
