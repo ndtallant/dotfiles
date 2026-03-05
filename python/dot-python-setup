@@ -1,0 +1,82 @@
+#!/bin/sh
+
+alias sv='source .venv/bin/activate'
+alias dv='deactivate'
+
+#####################################################################
+# Python ZSH Configuration
+# -------------------------------------------------------------------
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+
+#####################################################################
+# Global Python Environment
+# https://docs.python.org/3/using/cmdline.html#environment-variables
+# -------------------------------------------------------------------
+export PYTHONPATH="$HOME/.pybin/"
+export PYTHONBREAKPOINT="tdb.set_trace"
+
+
+#####################################################################
+# Global uv settings
+# https://docs.astral.sh/uv/reference/environment/ 
+# -------------------------------------------------------------------
+export UV_PYTHON_DOWNLOADS="automatic" 
+export UV_PYTHON_PREFERENCE="only-managed"
+
+
+#####################################################################
+# pyden shows where all the pythons live!
+#
+#   - brew pythons should only be used for other brew packages
+#   - uv should only use it's own managed pythons
+#   - pyenv is used to prevent us from blowing up the system python
+#
+# -------------------------------------------------------------------
+function pyden {
+  echo "brew packages use the following python versions"
+  echo "-----------------------------------------------"
+  # brew list --versions python <-- very slow
+  ls $(brew --cellar) | grep python
+  
+  echo
+  echo "uv has installed and manages the following versions"
+  echo "---------------------------------------------------"
+  uv python list --only-installed
+  
+  echo
+  echo "pyenv has installed and manages the following versions"
+  echo "------------------------------------------------------"
+  pyenv versions --bare
+  
+  echo
+  echo "this environment uses" 
+  echo "---------------------" 
+  echo "$(python --version) --> $(which python)"
+}
+
+
+#####################################################################
+# Tab completion of modules when running `python -m [module]`
+# It overrides the default _python_modules zsh completion func.
+# This only works if autoload -Uz compinit; compinit is called later.
+# -------------------------------------------------------------------
+_python_modules() {
+
+  local modules
+
+  # Technically this gets packages and not modules, BUT it generates
+  # all of the packages in the current path. Which is usually what I want
+  # to autocomplete.
+  modules=(${(f)"$(python3 -c 'import pkgutil; print("\n".join(m.name for m in pkgutil.walk_packages(["."])))')"})
+
+  # Use compadd to add the completions without a trailing space
+  # -Q: Quotes the results to handle any special characters properly.
+  # -S '': Ensures no trailing space is added after the completions.
+  # --: Signals the end of options for compadd, 
+  #     ensuring that all following arguments are treated 
+  #     as completion suggestions.
+  compadd -Q -S '' -- $modules
+}
