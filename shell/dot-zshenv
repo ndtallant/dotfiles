@@ -1,0 +1,5 @@
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Custom executables and uv tools
+export PATH="$HOME/.local/bin:$PATH"

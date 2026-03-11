@@ -1,0 +1,65 @@
+# https://docs.brew.sh/Brew-Bundle-and-Brewfile
+# To install these dependencies: brew bundle [install] --global
+# To remove extra dependencies:  brew bundle cleanup --global
+
+tap "homebrew/services"
+
+###################################
+# Terminal Applications and Utils
+# ---------------------------------
+
+brew "cbonsai"
+brew "fd"
+brew "ffmpeg"
+brew "fzf"
+brew "neofetch"
+brew "neovim"
+brew "pandoc"
+brew "ripgrep"
+brew "stow"
+brew "tmux"
+brew "tree"
+brew "wget"
+brew "yt-dlp"
+cask "mitmproxy"
+cask "wezterm"
+
+#####################################
+# Programming Languages and Tooling
+# -----------------------------------
+
+brew "go"
+brew "gopls"
+
+brew "isort"
+brew "mypy"
+brew "pyenv"
+brew "pyright"
+brew "ruff"
+brew "uv"
+
+brew "duckdb"
+
+brew "gcc"
+brew "llvm"
+
+brew "lua"
+brew "lua-language-server"
+brew "stylua"
+
+brew "node"
+brew "vite"
+
+brew "r"
+
+#####################################
+# Casks (GUIs)
+# -----------------------------------
+cask_args appdir: "~/Applications", require_sha: true
+
+cask "lunar"
+
+#####################################
+# Manages uvx/uv tool (very cool)
+# -----------------------------------
+uv "csvkit"
