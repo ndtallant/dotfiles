@@ -1,24 +1,37 @@
 # vim: set ft=sh :
-#
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
+
+#####################################################################
+# ZSH builtins
+# -------------------------------------------------------------------
+autoload -Uz compinit # For updating custom completions
+autoload -Uz vcs_info # For having git information in prompt
+
+#####################################################################
+# Prompt Configuration
+# -------------------------------------------------------------------
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:*' enable git
+
+export PROMPT=$'%F{green}%~%f%F{blue}${vcs_info_msg_0_}%f\n%F{green}% \u25B6 \u25B7 \u25B6 %f'
+export RPROMPT=$'%F{green}%D %T%f'
+
+
+#####################################################################
+# Alias Defs
+# -------------------------------------------------------------------
 
 alias path="sed 's/:/\n/g' <<< $PATH"
+alias vim='nvim'
+alias l='ls'
+alias ll='ls -l'
+alias jpn='jupyter notebook'
+alias :x='exit'
 
-source ~/.bashrc
+
+# Sets ENV and python specific aliases/funcs
 source ~/.python-setup
-bindkey -e
-
-timezsh() {
-  shell=${1-$SHELL}
-  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-}
-
-source ~/.zsh_prompt
-
 
 # Initialize zsh completion after custom completion functions are defined.
-autoload -Uz compinit
 compinit

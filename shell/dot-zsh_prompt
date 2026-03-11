@@ -1,9 +1,0 @@
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-
-zstyle ':vcs_info:*' enable git
-
-export PROMPT=$'%F{green}%~%f%F{blue}${vcs_info_msg_0_}%f\n%F{green}% \u25B6 \u25B7 \u25B6 %f'
-export RPROMPT=$'%F{green}%D %T%f'
