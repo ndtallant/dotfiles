@@ -6,5 +6,6 @@ return {
     nmap("<leader>ff", "<cmd>Telescope git_files<cr>")
     nmap("<leader>lg", "<cmd>Telescope live_grep<cr>")
     nmap("<leader>lb", "<cmd>Telescope buffers<cr>")
+    nmap("<leader>lm", "<cmd>Telescope marks<cr>")
   end,
 }

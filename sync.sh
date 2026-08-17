@@ -2,7 +2,7 @@
 
 set -eu
 
-PACKAGES="shell git tmux wezterm vim python"
+PACKAGES="shell git tmux wezterm vim python node"
 
 
 if ! command -v stow >/dev/null 2>&1; then

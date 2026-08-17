@@ -35,3 +35,6 @@ source ~/.python-setup
 
 # Initialize zsh completion after custom completion functions are defined.
 compinit
+
+# opencode
+export PATH=/Users/nick/.opencode/bin:$PATH

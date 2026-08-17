@@ -5,7 +5,7 @@ return {
 	font_size = 16.5,
 	font = wezterm.font("JetBrainsMono Nerd Font Mono"),
 	tab_bar_at_bottom = true,
-	color_scheme = "nightfox",
+	color_scheme = "terafox",
 	-- Be extra
 	--hide_tab_bar_if_only_one_tab = true,
 	--window_background_opacity = 0.75,

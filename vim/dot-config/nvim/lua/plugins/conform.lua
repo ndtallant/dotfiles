@@ -11,6 +11,9 @@ return {
       go = { "goimports", "gofmt" },
       python = { "isort", "ruff" },
       rust = { "rustfmt" },
+      css = { "prettier" },
+      html = { "prettier" },
+      typescript = { "prettier" },
     },
   },
 }

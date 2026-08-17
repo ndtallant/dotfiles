@@ -27,8 +27,8 @@ set nocompatible
 
 
 " Replace single quote with double quote
-nnoremap '' :s/'/"/g <C-M>
-vnoremap '' :s/'/"/g <C-M>
+" nnoremap '' :s/'/"/g <C-M>
+" vnoremap '' :s/'/"/g <C-M>
 
 " Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,8 +199,6 @@ set wrap
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <silent> <Tab> >>
-nnoremap <silent> <S-Tab> <<
 
 " Spellcheck markdown files
 :autocmd FileType markdown set spell

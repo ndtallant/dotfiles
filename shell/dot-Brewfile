@@ -15,14 +15,13 @@ brew "fzf"
 brew "neofetch"
 brew "neovim"
 brew "pandoc"
+brew "podman"
 brew "ripgrep"
 brew "stow"
 brew "tmux"
 brew "tree"
 brew "wget"
 brew "yt-dlp"
-cask "mitmproxy"
-cask "wezterm"
 
 #####################################
 # Programming Languages and Tooling
@@ -48,6 +47,8 @@ brew "lua-language-server"
 brew "stylua"
 
 brew "node"
+brew "pnpm"
+brew "prettier"
 brew "vite"
 
 brew "r"
@@ -58,8 +59,17 @@ brew "r"
 cask_args appdir: "~/Applications", require_sha: true
 
 cask "lunar"
+cask "ghostty"
+cask "wezterm"
+cask "anki"
+cask "firefox"
 
 #####################################
 # Manages uvx/uv tool (very cool)
 # -----------------------------------
 uv "csvkit"
+
+#####################################
+# Manages npm
+# -----------------------------------
+npm "@earendil-works/pi-coding-agent"
