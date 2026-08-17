@@ -9,6 +9,7 @@ tap "homebrew/services"
 # ---------------------------------
 
 brew "cbonsai"
+brew "difftastic"
 brew "fd"
 brew "ffmpeg"
 brew "fzf"

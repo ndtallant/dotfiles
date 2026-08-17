@@ -29,3 +29,4 @@
 	autocorrect = prompt
 [diff]
 	algorithm = histogram
+    external = difft
