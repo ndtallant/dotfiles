@@ -29,6 +29,18 @@ alias ll='ls -l'
 alias jpn='jupyter notebook'
 alias :x='exit'
 
+# Start or attach to a tmux session named after the current Git branch.
+tm() {
+    local branch
+    branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null)
+
+    if [[ -n "$branch" ]]; then
+        tmux new-session -A -s "$branch"
+    else
+        tmux new-session
+    fi
+}
+
 
 # Sets ENV and python specific aliases/funcs
 source ~/.python-setup
