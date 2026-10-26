@@ -4,6 +4,8 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Custom executables and uv tools
 export PATH="$HOME/.local/bin:$PATH"
+# git-* subcommands tracked in this repo
+export PATH="$HOME/.config/git/bin:$PATH"
 . "$HOME/.cargo/env"
 
 export EDITOR=nvim

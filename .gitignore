@@ -1,1 +1,4 @@
 nvim/plugin/packer_compiled.lua
+
+# Machine-local state; never stow a dot-local dir.
+dot-local/

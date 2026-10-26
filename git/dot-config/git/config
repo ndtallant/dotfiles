@@ -4,7 +4,7 @@
 [include]
   path = ~/.config/git/private.gitconfig
 
-# More involved commands live in ~/.local/bin/git-*
+# More involved commands live in ~/.config/git/bin/git-*
 [alias]
   who = var GIT_COMMITTER_IDENT
   branch = branch --sort=-committerdate
