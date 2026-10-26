@@ -12,6 +12,7 @@ import inspect
 import linecache
 import pdb
 import reprlib
+import subprocess
 import sys
 
 CLEAR = "\x1b[2J\x1b[H"
@@ -78,6 +79,24 @@ class Tdb(pdb.Pdb):
                 CYAN if frame_lineno[0] == self.curframe else RESET,
             )
         )
+
+    def do_copy(self, arg):
+        """Copy the repr of an expression to the clipboard. Usage: copy <expression>"""
+        try:
+            val = self._getval(arg)
+        except Exception:
+            return
+        text = repr(val)
+        clipboard_cmds = [["pbcopy"], ["xclip", "-selection", "clipboard"], ["xsel", "--clipboard", "--input"]]
+        for cmd in clipboard_cmds:
+            try:
+                proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+                proc.communicate(text.encode())
+                self.message(as_color(f"Copied: {text}", GREEN))
+                return
+            except FileNotFoundError:
+                continue
+        self.error("Clipboard not available (install pbcopy, xclip, or xsel)")
 
 
 def set_trace(*, header="", commands=None):

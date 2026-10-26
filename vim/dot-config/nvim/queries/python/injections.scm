@@ -7,6 +7,6 @@
 )
 (
     (string_content) @injection.content
-    (#match? @injection.content "(<p>|<a>|<html>|<body>|<article>)")
+    (#match? @injection.content "(<p>|<a>|<li>|<html>|<body>|<article>)")
     (#set! injection.language "html")
 )

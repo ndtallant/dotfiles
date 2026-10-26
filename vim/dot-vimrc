@@ -15,7 +15,6 @@ if !has('nvim')
 endif
 
 "defaults for indentation (spaces)
-set smartindent
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -25,6 +24,8 @@ set autowrite
 set mouse=a
 set nocompatible
 
+"don't move stuff while I am typing
+set nosmartindent
 
 " Replace single quote with double quote
 " nnoremap '' :s/'/"/g <C-M>
@@ -198,7 +199,6 @@ set wrap
 " Keep text selected on indent
 vnoremap < <gv
 vnoremap > >gv
-
 
 " Spellcheck markdown files
 :autocmd FileType markdown set spell

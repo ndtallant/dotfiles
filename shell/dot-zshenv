@@ -4,6 +4,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Custom executables and uv tools
 export PATH="$HOME/.local/bin:$PATH"
+. "$HOME/.cargo/env"
 
 export EDITOR=nvim
 export MANPAGER='nvim +Man!'

@@ -2,8 +2,6 @@
 # To install these dependencies: brew bundle [install] --global
 # To remove extra dependencies:  brew bundle cleanup --global
 
-tap "homebrew/services"
-
 ###################################
 # Terminal Applications and Utils
 # ---------------------------------
@@ -64,6 +62,7 @@ cask "ghostty"
 cask "wezterm"
 cask "anki"
 cask "firefox"
+cask "font-jetbrains-mono-nerd-font"
 
 #####################################
 # Manages uvx/uv tool (very cool)

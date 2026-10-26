@@ -1,6 +1,29 @@
 #!/bin/sh
-# Removes local branches that were deleted on the upstream
+# Removes local branches (and associated worktrees) that were deleted on the upstream
 
-git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | 
-    awk '$2 == "[gone]" {print $1}' | 
-    xargs -r git branch -D
+git fetch -p
+
+gone_branches=$(git for-each-ref --format '%(refname:short) %(upstream:track)' |
+    awk '$2 == "[gone]" {print $1}')
+
+[ -z "$gone_branches" ] && exit 0
+
+main_path=$(git rev-parse --show-toplevel)
+
+for branch in $gone_branches; do
+    worktree_path=$(git worktree list --porcelain | awk -v branch="$branch" '
+        /^worktree / { path = substr($0, 10) }
+        /^branch /   {
+            b = substr($0, 8)
+            sub(/^refs\/heads\//, "", b)
+            if (b == branch) print path
+        }
+    ')
+
+    if [ -n "$worktree_path" ] && [ "$worktree_path" != "$main_path" ]; then
+        echo "Removing worktree for gone branch: $branch ($worktree_path)"
+        git worktree remove --force "$worktree_path"
+    fi
+
+    git branch -D "$branch"
+done

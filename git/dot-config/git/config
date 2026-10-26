@@ -11,14 +11,19 @@
   nvm="! git reset --soft HEAD~1"
   append="! git add . && git commit --amend"
   locals = "! git branch --format '%(refname:short) %(upstream:short)' | awk '{if (!$2) print $1;}'"
+  browse = "!gh browse --branch $(git rev-parse --abbrev-ref HEAD)"
+  wip = "! git add . && git commit -m'wip' --no-verify"
+  root = "! git worktree list --porcelain | head -1 | cut -d' ' -f 2"
+	fpush = push --force-with-lease --force-if-includes
 
 [pull]
 	rebase = true
 [merge]
 	conflictstyle = diff3
+	tool = vimdiff
 [rebase]
 	autostash = true
-	updateRefs = true
+	updateRefs = false
 [push]
 	autoSetupRemote = true
 [init]
@@ -39,3 +44,5 @@
     # Set difftastic as the default difftool, so we don't need to specify
     # `-t difftastic` every time.
     tool = difftastic
+[mergetool "vimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE $MERGED

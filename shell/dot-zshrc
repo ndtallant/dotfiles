@@ -29,16 +29,13 @@ alias ll='ls -l'
 alias jpn='jupyter notebook'
 alias :x='exit'
 
-# Start or attach to a tmux session named after the current Git branch.
+# Start or attach to a tmux session named after the current Git branch,
+# falling back to the current directory's name outside a repo.
 tm() {
     local branch
     branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null)
 
-    if [[ -n "$branch" ]]; then
-        tmux new-session -A -s "$branch"
-    else
-        tmux new-session
-    fi
+    tmux new-session -A -s "${branch:-$(basename "$PWD")}"
 }
 
 
@@ -50,3 +47,23 @@ compinit
 
 # opencode
 export PATH=/Users/nick/.opencode/bin:$PATH
+
+[[ -f ~/.workrc ]] && source ~/.workrc
+
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/nick/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export PATH="$HOME/.local/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/nick/.local/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/nick/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
